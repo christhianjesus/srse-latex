@@ -1,0 +1,32 @@
+\chapter{Scripts SQL}
+\label{ape:sql}
+
+Antes de ejecutar los \textit{scripts}, para configurar \textit{PostgreSQL},
+se recomienda seguir algunos de los pasos que se detallan en el siguiente enlace:
+
+\url{https://www.postgresql.org/docs/current/non-durability.html}
+
+En especial, se recomienda:
+
+\begin{lstlisting}[caption={Configuración PostgreSQL.}]
+synchronous_commit = off
+fsync = off
+full_page_writes = off
+\end{lstlisting}
+
+Además, se recomienda no agregar las claves primarias ni las foráneas,
+se puede modificar la base de datos posteriormente para agregarlas.
+Esto incluye, los índices que el sistema emplea.
+
+Los \textit{scripts} se pueden encontrar en el repositorio siguiente:
+
+\url{https://github.com/christhianjesus/srse-psql}
+
+Estos \textit{scripts} incluyen:
+
+\begin{itemize}
+  \item Creación del esquema.
+  \item Lectura de los archivos \textit{XML}.
+  \item Extracción de los fragmentos de código.
+  \item Creación del índice invertido (\textit{LSH}).
+\end{itemize}

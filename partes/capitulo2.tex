@@ -1,0 +1,142 @@
+\chapter{Marco Tecnológico}
+
+En este capítulo se explica brevemente cada uno de los componentes necesarios
+para el desarrollo del Sistema de Recomendación del presente Proyecto de Grado.
+En primer lugar, en la Sección \ref{sec:ide}, se identifica el entorno de desarrollo integrado \textit{Eclipse}.
+En segundo lugar, en la Sección \ref{sec:languajes}, se describen los lenguajes \textit{Java} y \textit{PL/pgSQL}.
+Posteriormente, en la Sección \ref{sec:libs}, se enuncian las librerías empleadas por el sistema.
+Finalmente, en la Sección \ref{sec:db}, se exponen las fortalezas del uso de \textit{PostgreSQL}.
+
+\section{Entorno de Desarrollo Integrado}
+\label{sec:ide}
+
+Se desarrolla el Sistema de Recomendación como un \textit{plug-in}
+de \textit{Eclipse} por su gran flexibilidad.
+Además, este \ac{IDE} o entorno de desarrollo integrado,
+incluye un \textit{parser} para el lenguaje c y c++,
+que está escrito en \textit{Java}.
+
+\subsection{Eclipse}
+\textit{Eclipse} es una plataforma de software escrita en \textit{Java} en su mayoría,
+que integra un conjunto de herramientas de programación de código abierto multiplataforma
+y es usado típicamente como un \ac{IDE}, siendo algunas de sus extensiones \ac{JDT} y \ac{CDT}.
+Contiene un espacio de trabajo base y un sistema de complementos extensible,
+que permite personalizar el entorno de desarrollo.
+
+\section{Lenguajes de Programación}
+\label{sec:languajes}
+
+Los lenguajes de programación \textit{Java} y \textit{PL/pgSQL}
+son usados para desarrollar complementos en \textit{Eclipse} y
+\textit{scripts} en \textit{PostgreSQL}, respectivamente.
+%Se emplean ambos lenguajes para la elaboración del Sistema de Recomendación.
+
+\subsection{Java}
+
+\textit{Java} es un lenguaje de programación orientado a objetos de propósito general,
+que fue creado en 1991 por James Gosling y publicado en 1995 por \textit{Sun Microsystem}.
+Su sintaxis deriva en gran medida de los lenguajes c y c++,
+pero tiene menos control de las estructuras a bajo nivel que cualquiera de ellos.
+
+%El lenguaje\textit{Java} fue diseñado pensando en la portabilidad, su intención es permitir que los programadores escriban el programa una sola vez y lo ejecuten en cualquier dispositivo. Para lograr este propósito, se genera una representación intermedia llamada \textit{bytecode} cuando se compila una aplicación \textit{Java}, que se puede ejecutar en cualquier \textit{Máquina Virtual Java} sin importar la arquitectura de la plataforma subyacente.
+
+\subsection{PL/pgSQL}
+
+\ac{PL/pgSQL},
+es un lenguaje imperativo provisto por el gestor de base de datos \textit{PostgreSQL},
+escrito originalmente por Jan Wieck.
+
+Los objetivos de diseño de \ac{PL/pgSQL} se enfocaron en crear un lenguaje procedural
+cargable que pueda usarse para crear funciones y procedimientos disparados por eventos,
+añada estructuras de control al lenguaje \ac{SQL}, pueda realizar cálculos complejos,
+herede todos los tipos definidos por el usuario, las funciones y los operadores,
+pueda ser definido para ser confiable para el servidor y sea fácil de usar.
+
+%La principal ventaja es, que permite minimizar el número consultas al servidor de base de datos que dependen de un cálculo complejo, lo cual conlleva a un ahorro sustancial de recursos. Además, permite al gestor de base de datos planificar optimizaciones en la ejecución de la búsqueda y actualización de los datos.
+
+\section{Librerías}
+\label{sec:libs}
+
+El Sistema de Recomendación utiliza
+\textit{Google Guava} para extender las funcionalidades básicas de \textit{Java},
+\textit{Apache Commons Text} para decodificar entidades especiales en \ac{XML} y \ac{HTML},
+la librería \textit{CORE} de \textit{Eclipse CDT} para realizar el análisis léxico en c y c++.
+
+\subsection{Google Guava}
+
+\textit{Google Guava} es un conjunto de librerías comunes de código abierto para \textit{Java},
+desarrollado principalmente por \textit{Google}. Entre sus características incluye: 
+
+\begin{itemize}
+  \item Tipos para colecciones.
+  \item Colecciones inmutables.
+  \item Biblioteca de gráficos.
+  \item Tipos funcionales.  
+  \item Cache en memoria.  
+  \item Utilidades para concurrencia.
+  \item Operaciones de entrada y salida (I/O).  
+  \item Hashing.
+  \item Primitivas.
+  \item Reflexión.
+  \item Procesamiento de cadenas de carácteres.
+\end{itemize}
+
+\subsection{Apache Commons Text}
+\label{subsec:apache}
+
+\textit{Apache Commons Text} forma parte de un conjunto de proyectos de \textit{Apache Software Foundation}.
+El propósito de estos proyectos consiste en proveer componentes de software \textit{Java} reutilizables, en código abierto.
+Ésta librería es una biblioteca de métodos enfocada en algoritmos para procesar cadenas de carácteres.
+
+\subsection{Eclipse CDT: CORE}
+
+La librería \textit{CORE} de \textit{Eclipse CDT} contiene 
+dos \textit{parsers} de código libre escritos en \textit{Java},
+para c y c++, que son conocidos como los \textit{DOM Parsers}.
+Como \textit{Eclipse CDT} no es un compilador, sino un \ac{IDE},
+el diseño de los \textit{parsers} tiene otro enfoque,
+cuya principal influencia es el rendimiento.
+
+Entre sus principales características se encuentra:
+
+\begin{itemize}
+  \item Soporte para c y c++ actualizado.
+  \item Soporta recuperación de errores.
+  \item Incluye preprocesador.
+  \item Se encuentra en constante mantenimiento.
+\end{itemize}
+
+Aunque la documentación para el uso del \textit{parser} de forma independiente es prácticamente inexistente,
+existen trabajos de investigación en el área~\cite{10.1007/978-3-642-33442-9_45}.
+
+\section{Bases de Datos}
+\label{sec:db}
+
+Las bases de datos constituyen una de las fuentes de conocimiento de un \textit{Sistema de Recomendación}.
+Se utilizó \textit{PostgreSQL} como manejador de bases de datos por su versatilidad,
+flexibilidad y robustez al tratar con una gran cantidad de información.
+
+\subsection{PostgreSQL}
+
+\textit{PostgreSQL} es un \ac{RDBMS}, basado en \textit{POSTGRES v4.2},
+desarrollado en el Departamento de Ciencias de la Computación de la
+Universidad de California en Berkeley.
+
+\textit{PostgreSQL} es un descendiente código abierto del código original
+desarrollado en Berkeley y compatible con una gran parte del estándar \ac{SQL}.
+Además, ofrece características modernas como consultas complejas,
+claves foráneas, disparadores, vistas actualizables, integridad
+transaccional y control de concurrencia multiversión.
+
+Además, \textit{PostgreSQL} es flexible y puede ser extendido por el usuario para agregar:
+
+\begin{itemize}
+  \item Tipos de datos.
+  \item Funciones.
+  \item Operadores.
+  \item Funciones de agregación.
+  \item Métodos de Indexación.
+  \item Lenguajes Procedurales.
+\end{itemize}
+
+%Adicionalmente, debido a la licencia permisiva, \textit{PostgreSQL} puede ser utilizado, modificado y distribuido por cualquier persona de forma gratuita para cualquier propósito, ya sea privado, comercial o académico.

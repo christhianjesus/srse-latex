@@ -1,0 +1,153 @@
+\chapter*{Introducción}
+
+Desarrollar software es una actividad en constante evolución,
+que con frecuencia obliga al programador a enfrentarse a nuevos desafíos,
+debido a la creciente complejidad de los sistemas modernos.
+
+Gran parte de estos desafios consiste en solucionar errores inesperados,
+que surgen espontáneamente en la mayoría de los proyectos de software.
+Estos fallos, denominados \textit{bugs}, se originan debido a errores de lógica o comprensión,
+e incluso por comportamientos no definidos o inesperados~\cite{monperrus:hal-00987395}.
+Su solución se dificulta al toparse con documentación escasa, incomprensible o inexistente.
+
+Estudios muestran que el programador invierte hasta un 19\% de su tiempo~\cite{Brandt:2009:TSO:1518701.1518944}
+consultando diversas fuentes~\cite{Ko:2007:INC:1248820.1248867},
+entre las que destacan los recursos en línea~\cite{10.1007/978-0-387-09684-1_21}.
+
+Los recursos en línea disponibles son variados y amplios,
+siendo notables: Los foros, los blogs, las listas de correo electrónico, entre otros.
+En particular, los sitios de preguntas y respuestas \ac{QA},
+como \textit{Stack Overflow}, cuyos tópicos se enfocan en 
+la resolución de problemas de programación
+y conforman un conjunto aprovechable de conocimientos de libre acceso.
+
+Sin embargo, surgen problemas inherentes al proceso de búsqueda,
+entre los cuales destaca la falta de automatización~\cite{Ponzanelli:2014:PSR:2705615.2706035}.
+Saber qué y cómo buscar información no es trivial,
+el programador debe tener cierto grado de habilidad para realizar
+búsquedas cuyos resultados sean satisfactorios~\cite{Stolee:2014:SSS:2628068.2581377}.
+
+Por otro lado, las consultas hechas por los programadores
+suelen emplear palabras clave que no se relacionan directamente con el código fuente.
+El motivo aparente es la ineficacia de algunos motores de búsqueda para realizar este tipo de consultas,
+un caso notable es el motor de búsqueda del sitio web de \textit{Stack Overflow}~\cite{monperrus:hal-00987395}.
+
+\section*{Planteamiento del Problema}
+La corrección de errores en el software es un proceso repetitivo y sistemático,
+que puede llegar a ser tedioso y frustrante para el programador.
+En general, tratar de resolver errores requiere consultar múltiples fuentes con frecuencia,
+para buscar información que ayude a solucionar el error,
+existiendo la posibilidad de no encontrar información adecuada.
+
+Al programador no le es posible utilizar los motores de búsqueda para consultar el código directamente,
+sino que, por el contrario, tiende a describir su problema brevemente enfatizando los puntos clave;
+entre ellos, se incluye el nombre de la función, la clase, la librería o paquete,
+los resultados obtenidos por el program, los errores indicados por el compilador,
+la funcionalidad implementada, entre otros. En cualquier caso,
+debe ser lo suficientemente perspicaz para describir correctamente el problema e identificar su origen.
+
+Usualmente el programador tiende a consultar la documentación en busca de la solución al problema,
+solo para encontrarse con que la documentación no abarca los conceptos necesarios para su resolución;
+también, es posible que la misma sea de difícil comprensión para el programador,
+al estar escrita de forma confusa, con términos complejos o en otro idioma;
+además, cabe la posibilidad de que esté desactualizada y 
+las características asociadas al problema estén relacionadas con una nueva implementación,
+aún sin documentar o en el peor de los casos, no exista.
+Lo que con seguridad impide al programador encontrar la solución al problema en periodos razonables de tiempo;
+en el peor de los casos, puede obstaculizar y posponer la realización de la tarea asignada.
+
+El programador que no ha encontrado la solución en la documentación,
+con frecuencia recurre a otros sitios, entre ellos se encuentran los sitios de preguntas y respuestas.
+Estos sitios permiten al usuario consultar a otros usuarios sobre el problema presentado,
+permitiendo que las personas que hayan pasado por una situación similar
+o con un conocimiento más amplio, respondan.
+Estas respuestas quedan registradas en el foro y sirven como retroalimentación,
+para el uso posterior por parte de otros usuarios.
+
+Sin embargo, éste proceso es lento y requiere la intervención de otros usuarios.
+Además, parte de las preguntas hechas por los usuarios se repite periódicamente,
+a pesar que se enfatiza e insta a los usuarios a realizar una búsqueda anticipada.
+Lo que se debe en esencia, a la falta de habilidad de algunos usuarios para realizar
+consultas cuyos resultados sean satisfactorios.
+
+\section*{Antecedentes}
+
+Trabajos previos en el área apuntan a desarrollar un Sistema de Recomendación
+que se beneficie del conocimiento provisto por la comunidad de \textit{Stack Overflow},
+cuya principal motivación es proveer herramientas al usuario que agilicen el proceso de búsqueda.
+
+Se han publicado diversas investigaciones en éste sentido, entre las que destacan:
+
+\begin{itemize}
+	\item \textbf{Debugging with the Crowd}\cite{monperrus:hal-00987395}
+	presenta un Sistema de Recomendación como una herramienta para \textit{debugging}.
+	Realiza un estudio empírico sobre la base de datos de Stack Overflow y establece las bases
+	para el desarrollo de un sistema de recomendación que emplee los conocimientos de la comunidad de usuarios.
+	
+	\item \textbf{Prompter}\cite{Ponzanelli:2014:PSR:2705615.2706035} es un Sistema de Recomendación
+	basado en \textit{Stack Overflow} que se muestra como un \textit{plug-in} para \textit{Eclipse},
+	presenta un modelo de clasificación basado en las características del código y el contexto en
+	el \textit{IDE}.
+
+	\item \textbf{PDE4Java}\cite{Jadalla:2008:PPD:1413814.1413815} es un motor 
+	para la detección de plagio en código fuente para \textit{Java}, indaga en
+	las bases del uso del \textit{MinHash} como una potente herramienta.
+\end{itemize}
+
+Gran parte de la literatura relacionada, se enfoca en el estudio de distintas técnicas
+que abordan el problema de encontrar similitudes en el código.
+
+\section*{Justificación}
+
+El presente Proyecto de Grado se aboca en el desarrollo e implementación de 
+un Sistema de Recomendación, con la finalidad de proveer sugerencias 
+relevantes al programador.
+
+Muchos de los problemas que afectan el desarrollo de software se relacionan
+directamente con el proceso de búsqueda de información. El programador
+invierte tiempo valioso y sus consultas pueden no ser exitosas.
+Incrementando la brecha entre los objetivos y el resultado.
+
+Queda en evidencia la falta de herramientas
+que faciliten el proceso de búsqueda al desarrollador,
+permitan realizar consultas relacionadas con el código
+y disminuyan el tiempo empleado.
+
+Parte del enfoque de este Proyecto consiste en aplicar un algoritmo
+eficaz que permita reconocer fragmentos de código estructuralmente similares,
+salvando la gran cantidad de diferencias que pueden presentarse.
+
+\section*{Objetivos}
+
+\subsection*{Objetivo General}
+
+%Desarrollar un Sistema de Recomendación capaz de sugerir tópicos en el sitio web
+%de \textit{Stack Overflow} que sean de relevancia para el programador,
+%ayuden a solucionar errores y agilicen el proceso de desarrollo de software
+%en el lenguaje c/c++, apoyándose sobre algoritmos de Minería de Datos.
+
+Desarrollar un sistema capaz de recomendar soluciones a errores cometidos por el programador en lenguaje C,
+apoyándose sobre algoritmos de Minería de Datos.
+
+\subsection*{Objetivos Específicos}
+\begin{itemize}
+  \item Aplicar algoritmos de minería de datos para explotar los conocimientos
+  de programación en lenguaje c de la comunidad de programadores del sitio web \textit{Stack Overflow}.
+  
+  \item Implementar una herramienta que ayude al programador a identificar errores en el código,
+  mediante una lista de recomendaciones de posibles soluciones proporcionada por la comunidad.
+
+  \item Establecer un modelo de clasificación que incluya aspectos relacionados
+  a la reputación de los usuarios de \textit{Stack Overflow}.
+\end{itemize}
+
+\section*{Organización del Libro}
+El presente Proyecto de Grado está estructurado en cuatro capítulos.
+En el Capítulo 1, el marco teórico,
+se presentan los planteamientos necesarios para la comprensión del desarrollo del Sistema de Recomendación.
+En el Capítulo 2, el marco tecnológico,
+se exponen las herramientas empleadas que permitieron la implementación del Sistema de Recomendación.
+En el Capítulo 3, el marco metodológico,
+se desglosan los procesos, métodos y técnicas aplicadas para la elaboración del Sistema de Recomendación.
+En el Capítulo 4, desarrollo y resultados,
+se describen los resultados obtenidos al emplear el índice invertido e implementar el Sistema de Recomendación.

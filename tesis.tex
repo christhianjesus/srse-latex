@@ -1,0 +1,100 @@
+\documentclass{tesis-usb}
+
+% paquetes
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{acronym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makecell}
+%\usepackage{hyperref}
+
+% Para los graficos al final...
+\usepackage{float}
+\usepackage{placeins}
+
+% Para arreglar espacio entre parrafos y sangria
+\usepackage{parskip}
+\setlength{\parindent}{3ex}
+
+% workaround
+\DeclareMathSymbol{.}{\mathord}{letters}{"3B}
+
+% plot
+\usepackage{pgfplots}
+\usetikzlibrary{pgfplots.statistics}
+
+% fragmentos de código
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Fragmento de Código}
+\renewcommand{\lstlistlistingname}{Índice de Fragmentos de Código}
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	frame=single,
+	captionpos=b,
+	numbers=left,
+	showstringspaces=false,
+	aboveskip=1em,
+	belowskip=2em,
+	xleftmargin=1em,
+	xrightmargin=1em,
+	tabsize=4}
+
+% estilo de las referencias
+\usepackage[fixlanguage]{babelbib-and}\selectbiblanguage{spanish}
+\usepackage{url}
+%\bibliographystyle{babplain-lf}
+\bibliographystyle{babunsrt-lf}
+
+
+\autor{Christhian Guevara Valencia}
+\autori{C. Guevara}
+\usbid{09-10381}
+\titulo{Sistema de Recomendación de Soluciones a Errores de Programación en Lenguaje C usando Minería de Datos}
+\fecha{Noviembre~de~2018}
+\agno{2018}
+\fechadefensa{10~de~Diciembre~de~2018}
+\tutor{Ph.D. Masun Nabhan Homsi}
+% \usarcotutor
+\cotutor{Nombre y Apellido \mbox{(Afiliaci\'on)}} 
+\trabajo{Proyecto de Grado}
+\coord{Ingeniería de la Computación}
+\grado{Ingeniero de Computación}
+\carrera{Ing. Computación}
+\programa{Nombre del Programa}
+\juradouno{Nombre y Apellido}
+\juradodos{Nombre y Apellido \mbox{(Afiliaci\'on)}}
+\juradotres{Nombre y Apellido}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\input{partes/resumen}
+\input{partes/dedicatoria}
+\input{partes/agradecimientos}
+\tableofcontents
+\listoftables
+\listoffigures
+\lstlistoflistings
+\useacronyms
+
+\mainmatter
+% Para la sangría
+\input{partes/introduccion}
+\input{partes/capitulo1}
+\input{partes/capitulo2}
+\input{partes/capitulo3}
+\input{partes/capitulo4}
+\input{partes/conclusiones}
+\bibliography{referencias}
+
+\appendix
+\input{partes/apendiceA}
+\input{partes/apendiceB}
+\input{partes/apendiceC}
+\input{partes/apendiceD}
+\input{partes/apendiceE}
+
+\end{document}

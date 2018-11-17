@@ -1,0 +1,558 @@
+\chapter{Marco Teórico}
+
+En este capítulo se definen los conceptos necesarios para la comprensión
+del Sistema de Recomendación del presente Proyecto de Grado.
+En primer lugar, en la Sección \ref{sec:min}, se provee una breve introducción a Minería de Datos.
+En segundo lugar, en la Sección \ref{sec:sr}, se presentan los fundamentos de un Sistema de Recomendación.
+En tercer lugar, en la Sección \ref{sec:qa}, se describen los Sitios de Preguntas y Respuestas.
+En cuarto lugar, en la Sección \ref{sec:sim}, se expone la Similitud entre Documentos como un área de investigación.
+Posteriormente, en la Sección \ref{sec:doc}, se detalla la técnica de \textit{Document Fingerprinting} empleada.
+Finalmente, en la Sección \ref{sec:ind}, se enuncian las bases para la elaboración del Índice Invertido.
+
+\section{Minería de datos}
+\label{sec:min}
+
+“La Minería de Datos \dots~implica la deducción de algoritmos que exploran los datos,
+desarrollan el modelo y descubren patrones previamente desconocidos”~\cite{Maimon:2010:DMK:1869923}.
+
+El objetivo general del proceso de minería de datos consiste en extraer
+información de una fuente de datos e intentar convertir esa información
+en un conjunto aprovechable de conocimientos.
+
+El proceso de minería de datos generalmente consiste de 3 pasos~\cite{Amatriain2011}:
+
+\begin{itemize}
+  \item Preprocesamiento.
+  \item Análisis.
+  \item Interpretación.
+\end{itemize}
+
+Los Sistemas de Recomendación nacen como consecuencia de automatizar el
+proceso de una técnica de minería de datos, para una instancia en particular.
+ 
+\section{Sistema de Recomendación}
+\label{sec:sr}
+
+Los Sistemas de Recomendación son agentes de software que obtienen los intereses
+o preferencias de los usuarios, para hacer las recomendaciones correspondientes~\cite{Xiao:2007:EPR:2017327.2017335}.
+Generalmente, éstas sugerencias se generan utilizando información perteneciente al usuario,
+ya sea que esta información fuere adquirida de forma explícita o implícita.
+
+\subsection{Objetivos}
+
+El objetivo principal de un Sistema de Recomendación es realizar sugerencias 
+que permitan agilizar un proceso.
+
+Además, se mencionan los siguientes objetivos operacionales y técnicos~\cite{Aggarwal2016}:
+
+\begin{description}
+  \item [Relevancia] Recomendar elementos que sean relevantes para el usuario es el objetivo operativo esencial de un Sistema de Recomendación.
+  \item [Novedad] Si el contenido del tópico recomendado es diferente a los que ha visto el usuario en el pasado pero sigue siendo útil.
+  \item [Serendipia] Los elementos recomendados son algo inesperados y por lo tanto, hay un modesto sentimiento de descubrimiento afortunado, en contraposición a las recomendaciones obvias.
+\end{description}
+
+\subsection{Modelos Básicos}
+
+Se definen tres modelos básicos de Sistemas de Recomendación~\cite{jannach_zanker_felfernig_friedrich_2010}:
+
+\subsubsection{Filtrado Colaborativo}
+
+Los Sistemas de Recomendación que utilizan modelos de filtrado colaborativos
+realizan sus recomendaciones empleando las calificaciones proporcionadas por múltiples usuarios.
+La idea básica consiste en totalizar las calificaciones sobre los elementos,
+reconocer aquellas calificaciones que son comunes entre los usuarios y
+generar nuevas recomendaciones basadas en la comparación de estas calificaciones.
+En otras palabras, aprovechar las correlaciones entre elementos o
+las correlaciones entre los usuarios para el proceso de predicción.
+
+\subsubsection{Basados en Contenido}
+
+En los Sistemas de Recomendación basados en contenido,
+los atributos descriptivos de los elementos se usan para hacer recomendaciones,
+el término contenido se refiere a estos atributos.
+Se establecen perfiles para los elementos,
+se encuentran aquellos que comparten características similares y
+se recomiendan a los usuarios en base a elecciones anteriores.
+
+\subsubsection{Basados en Conocimiento}
+
+En los Sistemas de Recomendación basados en conocimiento,
+las recomendaciones se llevan a cabo en base a las similitudes
+entre los requerimientos del usuario y las características de los elementos.
+Durante el proceso de recuperación se utilizan diversas reglas y
+funciones de similitud provenientes del uso de bases de conocimiento.
+Este enfoque toma su nombre de las bases de conocimiento.
+
+\subsubsection{Sistemas Híbridos}
+
+Los modelos básicos de Sistemas de Recomendación, explotan diferentes fuentes de datos.
+Los sistemas híbridos pueden combinar las fortalezas de varios tipos
+de Sistemas de Recomendación para crear un modelo más robusto;
+además de combinar múltiples fuentes de datos,
+también pueden mejorar la eficiencia de una clase en particular.
+
+\section{Sitio de Preguntas y Respuestas}
+\label{sec:qa}
+
+Un \ac{QA} o sitio de preguntas y respuestas,
+permite a sus usuarios adquirir, compartir y generar
+conocimiento al interactuar con la comunidad.
+%Los usuarios pueden consultar, participar y contribuir
+%activamente con la comunidad a través de internet.
+
+Se compone de tres partes fundamentales:
+
+\begin{description}
+  \item [Preguntas] Las preguntas son formuladas por los usuarios para describir
+  un problema con el fin de obtener una solución por parte de la comunidad.
+  %Es necesario que el usuario recolecté toda la información necesaria al momento de formular la pregunta.
+  \item [Respuestas] Las respuestas son suministradas por otros usuarios y %supondrán una contribución a la comunidad como 
+  representan posibles soluciones al problema planteado en la pregunta asociada.
+  %Es posible que varias de estas posibles soluciones puedan resolver el problema.
+  \item [Comentarios] Los comentarios son utilizados por los usuarios para agilizar el proceso; 
+  permiten aclarar detalles, sugerir correcciones o proveer información.
+\end{description}
+
+\subsection{Stack Overflow}
+
+\textit{Stack Overflow} es un \ac{QA} perteneciente a la red \textit{Stack Exchange},
+que se enfoca en la resolución de problemas de programación.
+
+El contenido de los tópicos es provisto por la comunidad y
+conforma un conjunto aprovechable de conocimientos de libre acceso.
+
+\subsubsection{Estructura de la Base de Datos}
+\label{subsec:EstBasDat}
+
+La base de datos de \textit{Stack Overflow} se compone de 8 tablas distintas,
+cuya descripción se presenta a continuación:
+
+\begin{description}
+  \item [Badges] Conjunto que comprende a las medallas otorgadas a cada usuario.
+  Son premios por contribuir activamente con la comunidad.
+  \item [Comments] Conjunto que comprende a los comentarios asociados a los tópicos.
+  Permite agilizar el intercambio de información.
+  \item [PostHistory] Conjunto que comprende cada una de las modificaciones realizadas a los tópicos.
+  Un historial de cambios.
+  \item [PostLinks] Conjunto que comprende a los enlaces entre tópicos,
+  ya sean tópicos relacionados o tópicos duplicados.
+  \item [Posts] Conjunto que comprende el contenido esencial del sitio, los tópicos;
+  ya sean éstos preguntas o respuestas.
+  \item [Tags] Conjunto que comprende a todas las etiquetas que han sido asociadas a los tópicos.
+  Cada tópico puede tener hasta 5 etiquetas asociadas.
+  \item [Users] Perfil del usuario, conjunto que comprende la información pública para cada usuario.
+  \item [Votes] Reputación de los tópicos, conjunto que comprende cada voto asignado a los tópicos.
+\end{description}
+
+Se puede encontrar el diagrama \textit{entidad-relación} en el Anexo \ref{ape:diag},
+así como una descripción detallada del contenido de las tablas.
+%Además, se incluyen un enlace al diagrama general de la base
+%de datos de los sitios web pertenecientes a la red \textit{Stack Exchange}.
+
+\section{Similitud entre Documentos}
+\label{sec:sim}
+
+Existen diversas áreas de investigación que abordan el problema de encontrar
+documentos similares, entre ellas se encuentran Detección de Plagio
+y Detección de Clones.
+
+\subsection{Detección de Plagio}
+\label{subsec:plagio}
+
+“Plagio, es el acto de tomar los escritos de otra persona y pasarlos como propios.
+El fraude está estrechamente relacionado con la falsificación y la piratería,
+prácticas generalmente en violación de las leyes de derechos de autor”~\cite{britannica_2017}.
+
+Las características propias de los lenguajes de programación,
+se presentan como dificultades para el análisis de similitud textual~\cite{Beth2014ACO},
+permitiendo realizar una gran cantidad de cambios al código.
+
+A continuación, se enumeran los modificaciones más comunes~\cite{Arwin:2006:PDA:1151699.1151730}:
+
+\begin{itemize}
+  \item cambio de formato
+  \item cambio de identificadores
+  \item cambio en el orden de los operandos en las expresiones
+  \item cambio del tipo de datos
+  \item sustitución de expresiones por sus equivalentes
+  \item introducción de declaraciones redundantes
+  \item cambio en el orden de declaraciones independientes del tiempo
+  \item cambio en la estructura de las instrucciones de iteración
+  \item cambio en la estructura de las declaraciones de selección
+  \item sustitución de las llamadas a función por el cuerpo de la misma
+  \item introducción de declaraciones no estructuradas
+  \item combinación de fragmentos de código originales y copiados
+  \item traducción del código fuente de un lenguaje a otro
+\end{itemize}
+
+\newpage
+El plagio generalmente ocurre en dos niveles~\cite{Aggarwal2016}:
+
+\begin{description}
+  \item [Plagio Textual] El documento plagiado es idéntico o similar al documento original, el cual puede ser un informe, un ensayo, un reporte, entre otros.
+  \item [Plagio de Código Fuente] El código plagiado es una copia completa o parcial del código original, que ha sido adulterado para pasarlo como propio.
+\end{description}
+
+\subsection{Detección de Clones}
+\label{subsec:plagio}
+Un clon es un fragmento de código que ha sido copiado,
+aún si éste ha sufrido modificaciones menores
+o ha sido adaptado a otro contexto.
+Sin embargo, su definición es vaga y muchas veces depende de los algoritmos
+y los ajustes utilizados~\cite{Roy07asurvey}.
+
+Aunque los enfoques son distintos,
+tanto el área de Detección de Clones,
+como el área de Detección de Plagio en Código Fuente,
+se fundamentan en determinar la similitud entre fragmentos de código arbitrario~\cite{Beth2014ACO}.
+
+A continuación, se presenta una clasificación de los tipos de clones
+basada en el tipo de similitud~\cite{Roy07asurvey}:
+
+\begin{description}
+  \item [Tipo I] Fragmentos de código idénticos exceptuando las variaciones en los espacios en blanco, el diseño y los comentarios.
+  \item [Tipo II] Fragmentos de código sintácticamente idénticos exceptuando las variaciones en los identificadores, los literales, los tipos, el diseño y los comentarios.
+  \item [Tipo III] Fragmentos de código con modificaciones adicionales. Las expresiones pueden estar alteradas y tener variaciones en los identificadores, los literales, los tipos, el diseño y los comentarios.
+  \item [Tipo IV] Fragmentos de código que realizan el mismo cálculo pero implementados a través de diferentes variantes sintácticas.
+\end{description}
+
+\newpage
+\subsection{Métodos y Técnicas}
+
+Numerosos métodos y técnicas han sido desarrollados para abordar
+el problema de similitud entre fragmentos de código.
+
+Una clasificación general es provista~\cite{Roy07asurvey}:
+
+\begin{description}
+  \item [Strings] Busca coincidencias textuales exactas entre segmentos; por ejemplo, ejecuciones de cinco palabras. De ejección rápida, pero puede confundirse al renombrar identificadores.
+  \item [Metrics] Calculan puntajes para segmentos de código de acuerdo a ciertos criterios; por ejemplo, el número de bucles y condicionales. Sin embargo, puede dar lugar a falsos positivos.
+  \item [Tokens] Similar al de \textit{Strings}, pero usando un \textit{lexer} para convertir el programa en \textit{tokens}. Se descartan los espacios en blanco, los comentarios y los nombres de los identificadores.
+  \item [Parse Trees] Se construyen y comparan los árboles de análisis sintáctico, permitiendo detectar similitudes de mayor nivel; por ejemplo, puede normalizar sentencias condicionales y detectar constructos equivalentes.
+  \item [Program Dependency Graphs] Captura el flujo de control en un programa y permite ubicar equivalencias de niveles mucho más altos, que involucra una mayor complejidad y tiempo de cálculo.
+  \item [Enfoques Híbridos] Por ejemplo, árboles de análisis sintáctico con árboles de sufijo, puede combinar la capacidad de detección de árboles de análisis sintáctico con la velocidad que permiten los árboles de sufijo.
+\end{description}
+
+\section{Document Fingerprinting}
+\label{sec:doc}
+
+Es una técnica para la detección precisa de copias completas 
+y parciales entre documentos~\cite{Lindkvist2005WinnowingA}.
+El texto se divide en subsecuencias, se calcula el \textit{hash} para cada 
+subsecuencia y se comparan los valores de \textit{hash} obtenidos entre los documentos. 
+Este proceso se realiza con la idea de que la reducción de la dimensionalidad resultante,
+supondrá una comparación mucho más factible y conservará la misma relación de similitud.
+En otras palabras, si un valor \textit{hash} es igual a otro valor \textit{hash}, 
+es muy probable que los textos correspondientes también sean idénticos~\cite{Beth2014ACO}.
+
+\subsection{Subsecuencias}
+
+El texto se divide en subsecuencias mediante el uso de \textit{n-gram} o \textit{w-shingling},
+donde el $n$ y el $w$ son parámetros escogidos por el usuario~\cite{Beth2014ACO}.
+
+\subsubsection{N-Grams}
+
+Un \textit{n-gram} es una subsecuencia de $n$ elementos contiguos,
+creada a partir de una secuencia dada. Por ejemplo, 
+la secuencia de \textit{4-grams} de la siguiente frase
+‘pablito clavó un clavito’ es:
+
+\begin{equation*}
+pabl\ abli\ blit\ lito\ itoc\ toca\ ocav\ cavo\ avou\ voun\ ounc\ uncl\ ncla\ clav\ lavi\ avit\ vito
+\end{equation*}
+
+\subsubsection{W-Shingles}
+
+Un \textit{shingle} es una subsecuencia contigua de palabras. 
+Por su parte, una subsecuencia contigua de $w$ palabras es un \textit{w-shingle}.
+Por ejemplo, el conjunto de \textit{2-shingles} de la frase ‘compré pocas copas, pocas copas compré’ es:
+
+\begin{equation*}
+(compre,\ pocas),\ (pocas,\ copas),\ (copas,\ pocas),\ (copas,\ compre)
+\end{equation*}
+
+\subsubsection{Hashing}
+
+Las subsecuencias de texto obtenidas mediante \textit{n-grams}
+o \textit{w-shingles} no suelen usarse directamente;
+por el contrario, se escoge una función de \textit{hash} que convierte cada una de las
+subsecuencias de texto a una representación numérica.
+
+Por ejemplo, se podría escoger una representación de \textit{n-grams} de $n = 7$
+para un documento; luego, se utiliza una función de \textit{hash} y 
+se convierten los \textit{7-grams} a una representación numérica
+en el rango de $0$ a $2^{32} - 1$. 
+En consecuencia, cada \textit{7-gram} es representado por \textit{4 bytes} en vez de \textit{7 bytes},
+lo que compacta el tamaño de los datos y permite realizar operaciones sobre enteros.
+
+\subsection{Similitud}
+
+%La medida de similitud entre documentos se puede derivar del número de las partes compartidas entre los documentos.
+Si se piensa en el documento como un conjunto, se verá como sus elementos a los valores de \textit{hash} obtenidos a partir de éste.
+Al hacerlo, los documentos que compartan fragmentos de texto similares, tendrán elementos comunes en sus conjuntos,
+incluso si estos fragmentos aparecen en diferente orden en los documentos~\cite{Rajaraman:2011:MMD:2124405}.
+
+\subsubsection{Coeficiente de Similitud de Jaccard}
+
+Se mide la similitud de conjuntos por el coeficiente de similitud de \textit{Jaccard},
+el cual para los conjuntos $A$ y $B$ es~\cite{Rajaraman:2011:MMD:2124405}:
+
+\begin{equation*}
+J(A, B) = \frac{|A \cap B|}{|A \cup B|}
+\end{equation*}
+
+Esto es, la relación entre el tamaño de la intersección de $A$ y $B$ con el tamaño de su unión.
+El valor obtenido se encuentra entre $0$ y $1$, 
+siendo $1$ cuando los conjuntos son iguales y 
+$0$ cuando son diferentes. 
+Los valores intermedios definen el grado de similitud.
+
+\subsection{Huella Digital}
+
+La técnica de \textit{Document Fingerprinting} no se limita a 
+comparar los valores de \textit{hash} obtenidos de los documentos directamente; 
+en su lugar, se selecciona un subconjunto de éstos,
+para crear el \textit{fingerprint} o huella digital.
+De esta manera, se puede representar el documento en menos espacio
+y realizar comparaciones mucho más rápidas.
+
+\subsubsection{Firma}
+
+La mayoría de las técnicas utilizadas en \textit{Document Fingerprinting} 
+son diseñadas para detectar diferencias entre documentos,
+generando valores de \textit{hash} que difieren significativamente si hay cambios.
+En contraposición, se utiliza una firma para detectar similitudes entre documentos,
+produciendo valores de \textit{hash} similares para documentos similares.
+
+\subsubsection{MinHash}
+
+El \textit{MinHash} está diseñado con el fin de que dos objetos
+similares generen valores de \textit{hash} similares~\cite{grattan_2017}.
+Se suele utilizar ésta representación para estimar de forma eficiente
+el coeficiente de similitud de \textit{Jaccard}~\cite{Rajaraman:2011:MMD:2124405}.
+
+Una forma de visualizar el funcionamiento del método
+consiste en utilizar una matriz característica,
+donde las columnas corresponden a los conjuntos y
+las filas a sus elementos.
+De esta forma, se obtiene una matriz que contiene un $1$ en la fila $f$ y la columna $c$,
+si el elemento de la fila $f$ es miembro del conjunto de la columna $c$;
+caso contrario, el valor en la posición $(f,c)$ es $0$.
+
+Luego, al escoger una permutación de las filas de la matriz, 
+se tiene que el valor \textit{MinHash} para el conjunto de la columna $c$,
+es el valor del elemento de la primera fila $f$ en ese orden,
+para el cual el valor en la posición $(f,c)$ es $1$.
+
+Por ejemplo, si se tiene la matriz característica cuyas filas son los elementos
+$\{a,b,c,d,e\}$ y sus columnas son los subconjuntos $S_1 = \{a,d\}$,
+$S_2 = \{c\}$, $S_3 = \{b,d,e\}$ y $S_4 = \{a,c,d\}$, se obtendrá la Tabla \ref{tab:conjuntoejemplo1}.
+
+\begin{table}[h]
+\caption{Matriz característica.}
+\label{tab:conjuntoejemplo1}
+\small
+\centering
+\begin{tabular}{ccccc}
+\hline
+{Elemento} & {$S_1$} & {$S_2$} & {$S_3$} & {$S_4$} \\
+\hline
+a & 1 & 0 & 0 & 1 \\
+b & 0 & 0 & 1 & 0 \\
+c & 0 & 1 & 0 & 1 \\
+d & 1 & 0 & 1 & 1 \\
+e & 0 & 0 & 1 & 0 \\
+\hline
+\end{tabular}
+\end{table}
+
+Luego, al generar una permutación de las filas de la matriz en la Tabla \ref{tab:conjuntoejemplo1},
+tal que el orden de las filas sea ‘beadc’, se obtendrá la matriz característica
+que se muestra en la Tabla \ref{tab:conjuntoejemplo2}.
+
+\begin{table}[h]
+\caption{Matriz característica permutada.}
+\label{tab:conjuntoejemplo2}
+\small
+\centering
+\begin{tabular}{ccccc}
+\hline
+{Elemento} & {$S_1$} & {$S_2$} & {$S_3$} & {$S_4$} \\
+\hline
+b & 0 & 0 & 1 & 0 \\
+e & 0 & 0 & 1 & 0 \\
+a & 1 & 0 & 0 & 1 \\
+d & 1 & 0 & 1 & 1 \\
+c & 0 & 1 & 0 & 1 \\
+\hline
+\end{tabular}
+\end{table}
+
+Esta permutación define una función  $h_1(x)$,
+que convierte los subconjuntos $S_1, S_2, \ldots, S_n$ a filas 
+$h_1(S_1), h_1(S_2), \ldots, h_1(S_n)$.
+De esta forma, se obtiene el valor de \textit{MinHash} para $S_1$ de acuerdo a $h_1(x)$.
+Así se tiene que, el valor del elemento de la primera fila,
+que contiene un $1$ para el conjunto de la columna $S_1$ es $a$,
+luego $h_1(S_1) = a$. Se obtienen los valores para $S_2$, $S_3$ y $S_4$ de forma similar,
+tal que $h_1(S_2) = c$, $h_1(S_3) = b$ y $h_1(S_4) = a$.
+
+A continuación, se escogen $2$ permutaciones distintas de las filas,
+tal que el orden de las filas sea ‘cdaeb’ y ‘dbcea’, lo que genera $h_2(x)$ y $h_3(x)$,
+como se muestra en la Tabla \ref{tab:conjuntoejemplo3}.
+
+\begin{table}[h]
+\caption{Matriz característica con 2 permutaciones.}
+\label{tab:conjuntoejemplo3}
+\small
+\centering
+\begin{tabular}{ccccc}
+\hline
+{Elemento} & {$S_1$} & {$S_2$} & {$S_3$} & {$S_4$} \\
+\hline
+c & 0 & 1 & 0 & 1 \\
+d & 1 & 0 & 1 & 1 \\
+a & 1 & 0 & 0 & 1 \\
+e & 0 & 0 & 1 & 0 \\
+b & 0 & 0 & 1 & 0 \\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{ccccc}
+\hline
+{Elemento} & {$S_1$} & {$S_2$} & {$S_3$} & {$S_4$} \\
+\hline
+d & 1 & 0 & 1 & 1 \\
+b & 0 & 0 & 1 & 0 \\
+c & 0 & 1 & 0 & 1 \\
+e & 0 & 0 & 1 & 0 \\
+a & 1 & 0 & 0 & 1 \\
+\hline
+\end{tabular}
+\end{table}
+
+Estas funciones generan una secuencia de valores de tamaño $3$, 
+que seran las firmas para los subconjuntos $S_1$, $S_2$, $S_3$ y $S_4$, tal que:
+\begin{align*}
+firma(S_1) = [a,d,d] \\
+firma(S_2) = [c,c,c] \\
+firma(S_3) = [b,d,d] \\
+firma(S_4) = [a,c,d]
+\end{align*}
+
+Una vez generadas las firmas, si estas son de tamaño $n$ para dos conjuntos arbitrarios $A$ y $B$,
+al compararlas, se tiene que cada valor obtenido $r_i$ se comporta como una variable aleatoria $0/1$,
+que es igual a 1 solo cuando $h_i(A) = h_i(B)$, para todo $i$ en el rango $1<=i<=n$.
+Entonces, $r_i$ es un estimador insesgado para $Jaccard(A, B)$, 
+que se promedia con las $n-1$ variables aleatorias restantes para mitigar la varianza.
+
+\begin{equation*}
+MinHash(A, B) = \displaystyle\sum_{i=1}^{n} \frac{r_i}{n}
+\end{equation*}
+
+Esta técnica permite realizar comparaciones en tiempo de ejecución $O(n)$.
+
+\newpage
+Como $r_i$ es un estimador insesgado, su promedio también lo es y
+por desviación estándar para sumas de variables aleatorias $0/1$~\cite{coms699812},
+se tiene que el error esperado es:
+
+\begin{equation*}
+O(\frac{1}{\sqrt{k}})
+\end{equation*}
+
+Por ejemplo, si se comparan las firmas para $S_1$ y $S_4$, vemos:
+
+\begin{equation*}
+Jaccard(S_1, S_4) = MinHash(S_1, S_4) = 66.67\%
+\end{equation*}
+
+\subsubsection{Función de Hash Universal}
+Se emplean una familia de funciones de \textit{hash} universal,
+ya que no es óptimo computar las tablas y permutar sus elementos,
+estas funciones son de la forma:
+
+\begin{equation*}
+h(x) = (a * x + b) \bmod c
+\end{equation*}
+
+Si $n$ es la cantidad de elementos en el conjunto, se tiene que:
+
+\begin{itemize}
+  \item $x$ es un valor que representa la posición del elemento en el conjunto.
+  \item $a$ y $b$ son valores seleccionados al azar en el intervalo $1$ a $n$.
+  \item $c$ es el siguiente número primo mayor o igual a $n$.
+\end{itemize}
+
+\section{Índice Invertido}
+\label{sec:ind}
+El índice invertido es una estructura de datos que suele asociar
+texto a la localización de un documento en un conjunto de datos.
+
+El propósito de un índice invertido es optimizar las búsquedas basadas en fragmentos de datos compuestos,
+lo que requiere cierto preprocesamiento al agregar un nuevo elemento al conjunto de datos.
+
+\newpage
+\subsection{Locality-Sensitive Hashing}
+El enfoque general para el \ac{LSH},
+consiste en emplear diversas funciones de \textit{hash} para asociar
+los elementos de un conjunto a distintas ‘casillas’.
+De esta manera, los elementos similares entre sí,
+tienen mayores probabilidades de ser agrupados en las mismas ‘casillas’,
+que los demás elementos.
+Luego, se considera como ‘par candidato’
+a cualquier par de elementos que se encuentre en la misma ‘casilla’~\cite{Rajaraman:2011:MMD:2124405}.
+
+Una forma efectiva de elegir las funciones de \textit{hash},
+es tomar las $n$ firmas generadas mediante el \textit{MinHash}
+y dividir la matriz en $b$ bandas que consten de $f$ filas cada una.
+Para cada banda, hay una función de \textit{hash} que toma vectores de $f$ elementos
+(parte de una columna dentro de esa banda)
+y asocia la firma correspondiente a una ‘casilla’.
+
+%Se puede usar la misma función de \textit{hash} para todas las bandas,
+%pero se usa una lista de ‘casillas’ distinta para cada banda.
+%De esta manera, las bandas no se mezclarán.
+%las columnas con el mismo vector en diferentes
+
+La cantidad de $b$ bandas y $f$ filas configura un umbral,
+que determina si un elementos se vuelve un ‘par candidato’ o no.
+Los elementos cuyo coeficiente de similitud se encuentra por encima de este umbral,
+tienen una alta probabilidad de convertirse en pares candidatos;
+caso contrario, aquellos elementos cuyo coeficiente de similitud se encuentra por debajo de este umbral,
+tienen una baja probabilidad de convertirse en pares candidatos.
+
+Una aproximación al umbral~\cite{Rajaraman:2011:MMD:2124405}, se puede obtener mediante la siguiente formula:
+
+\begin{equation*}
+ (\frac{1}{b})^{\frac{1}{r}}
+\end{equation*}
+
+Por ejemplo, si dividimos una matriz de firmas de $9$ filas en $3$ bandas,
+obtenemos la Figura \ref{tab:conjuntoejemplo3}.
+Donde se observa que la segunda y la cuarta columna mostradas explícitamente,
+contienen el vector columna $(0, 2, 1)$,
+lo que indica que ambas firmas serán agrupadas en la misma ‘casilla’.
+Por lo tanto, este par de columnas será un ‘par candidato’.
+
+\begin{figure}[h]
+\small
+\centering
+\begin{tabular}{c|cccccccccccccccccccc|}
+\cline{2-21}
+			& & & & & & 1 & 0 & 0 & 0 & 2 & & & & & & & & & & \\
+banda 1	    & \multicolumn{5}{c}{\textbf{...}} & 3 & 2 & 1 & 2 & 2 & \multicolumn{5}{c}{\textbf{...}} & & & & & \\
+			& & & & & & 0 & 1 & 3 & 1 & 1 & & & & & & & & & & \\
+\cline{2-21}
+			& & & & & & & & & & & & & & & & & & & & \\
+banda 2	    & & & & & & & & \textbf{\vdots} & & & & & & & & & & & & \\
+			& & & & & & & & & & & & & & & & & & & & \\
+\cline{2-21}
+			& & & & & & & & & & & & & & & & & & & & \\
+banda 3     & & & & & & & & & & & & & & & & & & & & \\
+			& & & & & & & & & & & & & & & & & & & & \\
+\cline{2-21}
+\end{tabular}
+\caption{Matriz de firmas.}
+\label{tab:conjuntoejemplo3}
+\end{figure}

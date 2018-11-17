@@ -1,0 +1,34 @@
+\chapter{Lista de Tokens}
+\label{ape:tok}
+
+Una lista detallada de los \textit{lexemas} que el \textit{parser} de \textit{Eclipse CDT} identifica,
+se puede encontrar en:
+
+\url{https://github.com/eclipse-cdt/cdt/blob/master/core/org.eclipse.cdt.core/parser/org/eclipse/cdt/core/parser/IToken.java}
+
+Al analizar las secuencias de \textit{tokens}, se encontró lo siguiente:
+
+\begin{itemize}
+  \item Si el \lstinline{id < 0}, son reservados (preprocesador y scanner). Se decidió ignorarlos.
+  \item Si el \lstinline{id > 144}, son extensiones posteriores para agregar funcionalidad.
+  Se decidió reemplazarlos, entre ellos se encuentra:
+  \begin{itemize}
+	\item Los tipos \lstinline{String} y \lstinline{Char} unicode, tanto de 16 como de 32 bits.
+	\item Los operadores \lstinline{Min} y \lstinline{Max}, \lstinline{<?=} y \lstinline{>?=} correspondientemente.
+  \end{itemize}
+  \item Si es id = 0, no está definido.
+  \item Los rangos 39, 53 a 128, 134 a 137, 140 a 143, no se encontraron.
+\end{itemize}
+
+Así, se reemplazaron los siguientes \textit{tokens}:
+
+\begin{lstlisting}[caption={Preprocesamiento de Tokens.}]
+tLSTRING (131) -> tSTRING(130)
+tUTF16STRING (5000) -> tSTRING(130)
+tUTF32STRING (5001) -> tSTRING(130)
+tLCHAR (133) -> tCHAR (132)
+tUTF16CHAR (5002) -> tCHAR (132)
+tUTF32CHAR (5003) -> tCHAR (132)
+<? (152) -> Free (142)
+>? (153) -> Free (143)
+\end{lstlisting}

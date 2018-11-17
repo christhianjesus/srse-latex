@@ -1,0 +1,43 @@
+\chapter*{Conclusiones y Recomendaciones}
+
+En el presente Proyecto de Grado se propuso la creación de un Sistema de Recomendación,
+que se apoye sobre algoritmos de minería de datos para proveer sugerencias en tiempo real.
+Estas sugerencias se realizan en base al fragmento de código provisto por el usuario en lenguaje c y c++,
+el cual se hace coincidir con fragmentos de código que se encuentran en los tópicos de \textit{Stack Overflow}.
+
+El sistema implementado demostró funcionar correctamente al sugerir tópicos,
+cuyos fragmentos de código, son estructuralmente iguales o similares al proporcionado por el usuario.
+
+Se encontraron los siguientes resultados parciales en la ejecución del presente proyecto:
+
+\begin{itemize}
+  \item El índice desarrollado en este proyecto es eficaz al obtener fragmentos de código que se encuentren previamente en la base de datos.
+  \item Los fragmentos de código con baja especificidad tienen una mayor incidencia en los tópicos,
+  lo que permite encontrar otros fragmentos iguales o similares estructuralmente con mayor probabilidad.
+  Se encontró que $8$ líneas de código en promedio ofrece los mejores resultados.
+\end{itemize}
+
+El enfoque innovador utilizado en este proyecto,
+se basa en la similitud sintáctica de los fragmentos de código para realizar sugerencias;
+siendo en esencia, una comparación estructural pura.
+
+Sin embargo, se subraya el hecho de que cualquier par de fragmentos de código,
+estructuralmente iguales, pueden no poseer el mismo comportamiento.
+Esto ocurre generalmente cuando la especificidad de los fragmentos es baja.
+
+La lista de tópicos desplegada por la herramienta puede ser configurada,
+restringiendo el espacio de búsqueda y alineando los resultados a los intereses del usuario.
+
+El usuario puede dar preferencia a la búsqueda de preguntas o respuestas.
+Además, es posible limitar la búsqueda a las preguntas con respuesta aceptada o a las respuestas aceptadas.
+Así como, ordenar los resultados de acuerdo a la reputación del tópico.
+
+De los resultados obtenidos se derivan los siguientes aspectos para su posterior estudio:
+
+\begin{itemize}
+  \item Expandir el preprocesamiento de los datos para incluir fragmentos de código que no se encuentren en el formato estándar.
+  \item Ampliar el análisis sintáctico incluyendo el uso de un \textit{parser}, con la finalidad de incrementar la precisión.
+  \item Implementar una función de \textit{hash} en el índice, con la finalidad de acelerar el proceso de búsqueda.
+  \item Desarrollar una clasificación automática de los resultados mediante filtros especializados que incluyan información del contexto.
+  \item Investigar algoritmos que permitan evaluar la contención de conjuntos, de forma similar a como se evalúa la igualdad de conjuntos mediante el \textit{MinHash}.
+\end{itemize}

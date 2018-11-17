@@ -1,0 +1,30 @@
+\begin{resumen}
+En los \'ultimos a\~nos ha crecido la popularidad de los sitios de preguntas y respuestas como un recurso informativo,
+capaz de proveer a sus usuarios de un medio para obtener soluciones a diversos problemas.
+Se sabe que los programadores tienden a invertir gran parte de su tiempo buscando soluciones a errores en estos sitios.
+%invirtiendo incluso un 19\% del tiempo que disponen.
+
+Asimismo, estudios previos han demostrado la baja efectividad de ciertos
+motores de b\'usqueda al emplear c\'odigo en sus consultas, entre ellos Stack Overflow.
+Lo que fuerza al programador a intentar describir su problema en breves l\'ineas
+y dificulta la b\'usqueda de informaci\'on. 
+
+Surge la necesidad de desarrollar una herramienta que automatice el proceso,
+por tal motivo se desarroll\'o un Sistema de Recomendaci\'on para ayudar al programador a identificar errores mediante sugerencias,
+que emplea fragmentos de c\'odigo para la consulta y 
+aplica algoritmos de Miner\'ia de Datos para explotar los conocimientos de la comunidad de usuarios de Stack Overflow.
+
+Se compararon las fortalezas y debilidades de las t\'ecnicas de similitud entre documentos
+y se decidi\'o usar una modificaci\'on del esquema de Document Fingerprinting,
+que emplea la t\'ecnica de MinHash para realizar comparaciones entre fragmentos de c\'odigo
+y utiliza la t\'ecnica de Locality-Sensitive Hashing para indexar los fragmentos.
+
+Las pruebas realizadas sobre el \'indice mostraron una efectividad del 100\%
+sobre una muestra de $1.000$ fragmentos de c\'odigo extra\'idos de los t\'opicos.
+Al emplear otra muestra de 10 fragmentos extra\'idos de fuentes externas mostr\'o ser eficaz al 60\%,
+sugiriendo t\'opicos relacionados. Se concluye entonces que el sistema
+implementado cumple cabalmente la funci\'on para la cual fue dise\~nado.
+
+\vfill
+\textbf{Palabras clave:} MinHash, LSH, Sistema de Recomendación, Stack Overflow, Plugin de Eclipse.
+\end{resumen}
