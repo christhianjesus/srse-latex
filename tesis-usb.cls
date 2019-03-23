@@ -302,17 +302,17 @@
                     {\bfseries Sartenejas, \@fecha}%%---
                \end{center}%--
           % lomo del libro 2/4
-               \newpage%---
-               \null%---
-               \thispagestyle{empty}%---
-               \begin{tabular}{c}%---
-                    \begin{sideways} \normalsize \parbox{4cm}{\centering USB \\ \MakeTextUppercase{\@carrera}} \end{sideways} \\ 
-                    [0.1cm]%---
-                    \begin{sideways} \normalsize \parbox{12cm}{\centering \MakeTextUppercase{\@titulo}} \end{sideways} \\ 
-                    [0.1cm]%---
-                    \begin{sideways} \normalsize \parbox{5cm}{\centering \MakeTextUppercase{\@autori} \\ \@agno} \end{sideways} \\
-                    [0.1cm]%---
-               \end{tabular}%---
+               %\newpage%---
+               %\null%---
+               %\thispagestyle{empty}%---
+               %\begin{tabular}{c}%---
+               %     \begin{sideways} \normalsize \parbox{4cm}{\centering USB \\ \MakeTextUppercase{\@carrera}} \end{sideways} \\ 
+               %     [0.1cm]%---
+               %     \begin{sideways} \normalsize \parbox{12cm}{\centering \MakeTextUppercase{\@titulo}} \end{sideways} \\ 
+               %     [0.1cm]%---
+               %     \begin{sideways} \normalsize \parbox{5cm}{\centering \MakeTextUppercase{\@autori} \\ \@agno} \end{sideways} \\
+               %     [0.1cm]%---
+               %\end{tabular}%---
           \end{titlepage}%---
           % p\'agina del t\'itulo (portada interna) 3/4
           \begin{titlepage} %---
@@ -345,12 +345,12 @@
                \end{center}%--
           \end{titlepage}%---
           % p\'agina de acta de evaluaci\'on (veredicto) 4/4
-          \newpage%---
-          \setcounter{page}{3}%---
-          \null%--
-          \vspace*{\fill}%---
-          {\centering \Huge P\'agina reservada para el acta de evaluaci\'on}
-          \vspace{\fill}%---
+          %\newpage%---
+          %\setcounter{page}{3}%---
+          %\null%--
+          %\vspace*{\fill}%---
+          %{\centering \Huge P\'agina reservada para el acta de evaluaci\'on}
+          %\vspace{\fill}%---
      \else % POSTGRADO
           % caratula del libro (portada de tapa dura) 1/4
           \begin{titlepage}%--
@@ -1087,6 +1087,8 @@
           \clearpage%---
      \fi%---
      \if@pregrado%--
+          \setcounter{page}{4}
+		  \null
           \addcontentsline{toc}{chapter}{\MakeTextUppercase{\resumenname}}%--- incluir resumen a la tabla de contenido
 		  \begin{center}%---
 		  \vskip -1.5cm \logousb \vskip 0.1cm%---

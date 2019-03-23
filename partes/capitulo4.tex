@@ -50,10 +50,10 @@ e incluyen la configuración sugerida para trabajar con
 grandes volúmenes de datos.
 
 El archivo \textit{Posts.xml} requiere la creación de la tabla \textit{PostTags},
-para representar la relación \textit{many to many}, muchos a muchos,
+para representar la relación muchos a muchos,
 que la tabla \textit{Post} guarda con respecto a la tabla \textit{Tags}.
 Por otro lado, se considera la creación de la tabla \textit{PostCodes},
-cuya relación es \textit{one to many}, uno a muchos,
+cuya relación es uno a muchos,
 para almacenar los fragmentos de código que son extraídos del tópico.
 
 Estos \textit{scripts} se apoyan sobre la función \textit{xpath}
@@ -341,12 +341,13 @@ tal que el error esperado es a lo sumo un $10\%$.
 Continuando con el Fragmento de Código \ref{lst:fc4} que usamos como ejemplo,
 se procede a generar la firma.
 
-Se escogen las siguientes funciones de \textit{hash}:
+Los coeficientes empleados en las funciones de \textit{hash} se encuentran entre $1$ y $429.981.695$,
+mientras que el primo más cercano es $429.981.701$, así se tiene que:
 \begin{gather*}
 f_1(x) = (x * 133 + 2.163) \bmod 429.981.701 \\
 f_2(x) = (x * 140.002 + 1.234) \bmod 429.981.701\\
 \vdots \\
-f_{100}(x) = (x * 91.231.268 + 300.122.522) \bmod 429.981.695
+f_{100}(x) = (x * 91.231.268 + 300.122.522) \bmod 429.981.701
 \end{gather*}
 	
 %A su vez, se escogen los coeficientes $a=140.002$ y $b=1.234$, se tiene:
@@ -617,7 +618,7 @@ mostrando solo aquellos que cumplen con los parámetros establecidos.
 
 \subsection{Determinar Tipos de Consulta}
 
-Las sugerencias realizas se pueden limitar a un subconjunto especifico 
+Las sugerencias realizadas se pueden limitar a un subconjunto especifico 
 de tópicos, entre los cuales se encuentran las preguntas y las respuestas.
 A su vez, la consulta de preguntas puede ser restringida a aquellas
 que tengan una respuesta aceptada, mientras que la consulta de respuestas
@@ -810,7 +811,7 @@ la cantidad de candidatos y
 el mayor porcentaje obtenido.
 
 \begin{table}[h]
-\caption{Resultados conjunto C.}
+\caption{Resultados conjunto 3.}
 \label{tab:res3}
 \centering
 \begin{tabular}{ccccc}

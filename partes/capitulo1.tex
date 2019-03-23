@@ -222,15 +222,15 @@ basada en el tipo de similitud~\cite{Roy07asurvey}:
 Numerosos métodos y técnicas han sido desarrollados para abordar
 el problema de similitud entre fragmentos de código.
 
-Una clasificación general es provista~\cite{Roy07asurvey}:
+Una clasificación general fundamentada en el tipo de comparación es provista~\cite{Roy07asurvey}:
 
 \begin{description}
-  \item [Strings] Busca coincidencias textuales exactas entre segmentos; por ejemplo, ejecuciones de cinco palabras. De ejección rápida, pero puede confundirse al renombrar identificadores.
-  \item [Metrics] Calculan puntajes para segmentos de código de acuerdo a ciertos criterios; por ejemplo, el número de bucles y condicionales. Sin embargo, puede dar lugar a falsos positivos.
-  \item [Tokens] Similar al de \textit{Strings}, pero usando un \textit{lexer} para convertir el programa en \textit{tokens}. Se descartan los espacios en blanco, los comentarios y los nombres de los identificadores.
-  \item [Parse Trees] Se construyen y comparan los árboles de análisis sintáctico, permitiendo detectar similitudes de mayor nivel; por ejemplo, puede normalizar sentencias condicionales y detectar constructos equivalentes.
-  \item [Program Dependency Graphs] Captura el flujo de control en un programa y permite ubicar equivalencias de niveles mucho más altos, que involucra una mayor complejidad y tiempo de cálculo.
-  \item [Enfoques Híbridos] Por ejemplo, árboles de análisis sintáctico con árboles de sufijo, puede combinar la capacidad de detección de árboles de análisis sintáctico con la velocidad que permiten los árboles de sufijo.
+  \item [Comparación basada en texto] Busca coincidencias textuales exactas entre segmentos; por ejemplo, ejecuciones de cinco palabras. De ejección rápida, pero puede confundirse al renombrar identificadores.
+  \item [Comparación basada en lexemas] Similar a la comparación textual, pero usando un \textit{lexer} para convertir el programa en \textit{tokens}. Se descartan los espacios en blanco, los comentarios y los nombres de los identificadores.
+  \item [Comparación basada en árboles de sintaxis] Se construyen y comparan los árboles de sintaxis abstracta, permitiendo detectar similitudes de mayor nivel; por ejemplo, puede normalizar sentencias condicionales y detectar constructos equivalentes.
+  \item [Comparación basada en grafos de dependencia] Captura el flujo de control en un programa y permite ubicar equivalencias de niveles mucho más altos, que involucra una mayor complejidad y tiempo de cálculo.
+  \item [Comparación basada en métricas] Calculan puntajes para segmentos de código de acuerdo a ciertos criterios; por ejemplo, el número de ciclos y condicionales. Sin embargo, puede dar lugar a falsos positivos.
+  \item [Comparación empleando enfoques híbridos] Por ejemplo, árboles de sintaxis abstracta con árboles de sufijo, puede combinar la capacidad de detección de árboles de sintaxis abstracta con la velocidad que permiten los árboles de sufijo.
 \end{description}
 
 \section{Document Fingerprinting}
@@ -288,8 +288,8 @@ lo que compacta el tamaño de los datos y permite realizar operaciones sobre ent
 \subsection{Similitud}
 
 %La medida de similitud entre documentos se puede derivar del número de las partes compartidas entre los documentos.
-Si se piensa en el documento como un conjunto, se verá como sus elementos a los valores de \textit{hash} obtenidos a partir de éste.
-Al hacerlo, los documentos que compartan fragmentos de texto similares, tendrán elementos comunes en sus conjuntos,
+Si se ve al documento como un conjunto, los elementos del conjunto serán aquellos valores de \textit{hash} que son calculados a partir del documento.
+De esta manera, los documentos que compartan fragmentos de texto similares tendrán elementos comunes en sus conjuntos,
 incluso si estos fragmentos aparecen en diferente orden en los documentos~\cite{Rajaraman:2011:MMD:2124405}.
 
 \subsubsection{Coeficiente de Similitud de Jaccard}
@@ -311,7 +311,7 @@ Los valores intermedios definen el grado de similitud.
 
 La técnica de \textit{Document Fingerprinting} no se limita a 
 comparar los valores de \textit{hash} obtenidos de los documentos directamente; 
-en su lugar, se selecciona un subconjunto de éstos,
+en su lugar, se selecciona un subconjunto de estos valores de \textit{hash}
 para crear el \textit{fingerprint} o huella digital.
 De esta manera, se puede representar el documento en menos espacio
 y realizar comparaciones mucho más rápidas.
@@ -516,7 +516,7 @@ y asocia la firma correspondiente a una ‘casilla’.
 %las columnas con el mismo vector en diferentes
 
 La cantidad de $b$ bandas y $f$ filas configura un umbral,
-que determina si un elementos se vuelve un ‘par candidato’ o no.
+que determina si un elemento se vuelve un ‘par candidato’ o no.
 Los elementos cuyo coeficiente de similitud se encuentra por encima de este umbral,
 tienen una alta probabilidad de convertirse en pares candidatos;
 caso contrario, aquellos elementos cuyo coeficiente de similitud se encuentra por debajo de este umbral,
